@@ -1,17 +1,22 @@
-# Quartz v5
+# 科研与技术笔记
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+这是一个使用 [Quartz 5](https://quartz.jzhao.xyz/) 构建的 Obsidian 笔记试验站。
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
+当前只发布三篇文章及其实际引用的图片，用于验证中文排版、长文目录、代码块、Callout、全文搜索、关系图谱和移动端布局。原始 Obsidian vault 中的草稿、临时文件和未引用附件不会进入这个仓库。
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+网站地址：<https://xuyf-web.github.io/research-notes-quartz/>
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+## 本地预览
 
-## Sponsors
+需要 Node.js 22 或更高版本。
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+```bash
+npm ci
+npx quartz build --serve
+```
+
+## 发布方式
+
+推送到 `v5` 分支后，GitHub Actions 会自动构建静态文件并部署到 GitHub Pages。
+
+Quartz 源码采用 MIT 许可证。文章与图片的版权仍归内容作者所有。
