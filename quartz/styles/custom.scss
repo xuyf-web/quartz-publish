@@ -178,6 +178,38 @@ footer,
     color: var(--secondary);
     opacity: 1;
   }
+
+  // Keep the article outline readable when notes use nested headings.
+  ul.toc-content.overflow > li {
+    position: relative;
+    margin: 0.18rem 0;
+    line-height: 1.45;
+  }
+
+  ul.toc-content.overflow > li.depth-0 > a {
+    color: var(--darkgray);
+    font-weight: 650;
+  }
+
+  ul.toc-content.overflow > li.depth-1 {
+    margin-left: 0.15rem;
+    padding-left: 0.85rem;
+    border-left: 1px solid color-mix(in srgb, var(--tertiary) 35%, var(--lightgray));
+  }
+
+  ul.toc-content.overflow > li.depth-2 {
+    margin-left: 0.95rem;
+    padding-left: 0.85rem;
+    border-left: 1px solid color-mix(in srgb, var(--secondary) 28%, var(--lightgray));
+    font-size: 0.92rem;
+  }
+
+  ul.toc-content.overflow > li.depth-3 {
+    margin-left: 1.75rem;
+    padding-left: 0.85rem;
+    border-left: 1px dashed color-mix(in srgb, var(--gray) 38%, var(--lightgray));
+    font-size: 0.86rem;
+  }
 }
 
 // Code blocks remain visually separate from prose in both colour modes.
@@ -308,35 +340,195 @@ article :not(pre) > code {
   }
 }
 
-// The homepage is a site landing page rather than a note.
-body[data-slug="index"] {
-  .page > #quartz-body {
-    grid-template-columns: 280px minmax(0, 1fr);
-    grid-template-areas:
-      "grid-sidebar-left grid-header"
-      "grid-sidebar-left grid-center"
-      "grid-sidebar-left grid-footer";
+// Navigation for reading pages: collections, shared files, and frequently used tags.
+.site-sidebar-nav {
+  display: grid;
+  flex: 1;
+  gap: 1.25rem;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+
+  section {
+    display: grid;
+    gap: 0.45rem;
   }
 
+  h3 {
+    margin: 0;
+    font-size: 0.78rem;
+    font-family: var(--codeFont);
+    font-weight: 700;
+    letter-spacing: 0.09em;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.16rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a.sidebar-nav-link {
+    display: block;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--darkgray);
+    padding: 0.34rem 0.48rem;
+    font-size: 0.83rem;
+    font-weight: 560;
+    line-height: 1.4;
+  }
+
+  a.sidebar-nav-link:hover {
+    background: color-mix(in srgb, var(--secondary) 9%, transparent);
+    color: var(--secondary);
+  }
+}
+
+.sidebar-nav-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.site-sidebar-nav a.sidebar-nav-all {
+  background: transparent;
+  color: var(--gray);
+  padding: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.site-sidebar-nav .sidebar-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+
+  a.tag-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    border-radius: 999px;
+    padding: 0.23rem 0.48rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  small {
+    color: var(--gray);
+    font-family: var(--codeFont);
+    font-size: 0.62rem;
+  }
+}
+
+// The homepage is a full-width site landing page rather than a note.
+body[data-slug="index"] {
+  .page > #quartz-body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "grid-header"
+      "grid-center"
+      "grid-footer";
+  }
+
+  .left.sidebar,
   .right.sidebar,
-  .page-header,
+  .page-header > .popover-hint,
   .center > hr {
     display: none;
   }
 
+  .page-header {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    margin: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 74%, transparent);
+    background: color-mix(in srgb, var(--light) 90%, transparent);
+    backdrop-filter: blur(16px) saturate(1.25);
+
+    > header {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0.78rem 2rem;
+    }
+  }
+
   .center {
-    padding: 5.5rem 3rem 1rem;
+    padding: 2.6rem 3rem 1rem;
   }
 
   article {
-    max-width: 1080px;
+    max-width: 1160px;
     margin: 0 auto;
   }
 
   footer {
-    max-width: 1080px;
+    max-width: 1160px;
     padding: 0 3rem;
   }
+}
+
+.page-header > header:empty {
+  display: none;
+}
+
+.home-topbar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.home-topbar-brand {
+  color: var(--dark);
+  font-family: var(--titleFont);
+  font-size: 1.05rem;
+  font-weight: 760;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+.home-topbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.85rem, 2.5vw, 2rem);
+
+  a {
+    color: var(--darkgray);
+    font-size: 0.84rem;
+    font-weight: 620;
+    white-space: nowrap;
+  }
+
+  a:hover {
+    color: var(--secondary);
+  }
+}
+
+.home-topbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .search {
+    width: 7.2rem;
+  }
+}
+
+#research-work,
+#featured-notes,
+#file-sharing {
+  scroll-margin-top: 5.5rem;
 }
 
 .home-hero {
@@ -769,12 +961,11 @@ body[data-slug="index"] {
   padding: 1.5rem;
   border: 1px solid color-mix(in srgb, var(--resource-accent) 25%, var(--lightgray));
   border-radius: 20px;
-  background:
-    linear-gradient(
-      145deg,
-      color-mix(in srgb, var(--light) 96%, var(--resource-accent)),
-      color-mix(in srgb, var(--light) 99%, var(--resource-accent))
-    );
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--light) 96%, var(--resource-accent)),
+    color-mix(in srgb, var(--light) 99%, var(--resource-accent))
+  );
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -912,12 +1103,8 @@ body[data-slug="index"] {
 
 @media all and (max-width: 1200px) {
   body[data-slug="index"] {
-    .page > #quartz-body {
-      grid-template-columns: 260px minmax(0, 1fr);
-    }
-
     .center {
-      padding: 4rem 2rem 1rem;
+      padding: 2.2rem 2rem 1rem;
     }
   }
 }
@@ -929,11 +1116,45 @@ body[data-slug="index"] {
     }
 
     .center {
-      padding: 2rem 0 1rem;
+      padding: 1.5rem 0 1rem;
     }
 
     footer {
       padding: 0;
+    }
+
+    .page-header > header {
+      padding: 0.7rem 0;
+    }
+  }
+
+  .home-topbar {
+    gap: 0.75rem;
+  }
+
+  .home-topbar-links {
+    gap: 0.7rem;
+
+    a {
+      font-size: 0.76rem;
+    }
+  }
+
+  .home-topbar-tools {
+    gap: 0.55rem;
+
+    .search {
+      width: 2.2rem;
+    }
+
+    .search > .search-button {
+      justify-content: center;
+      width: 2.2rem;
+      padding: 0;
+    }
+
+    .search > .search-button > p {
+      display: none;
     }
   }
 
@@ -980,5 +1201,29 @@ body[data-slug="index"] {
 
   .home-note {
     grid-template-columns: 1fr;
+  }
+}
+
+@media all and (max-width: 520px) {
+  .home-topbar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.55rem;
+  }
+
+  .home-topbar-brand {
+    font-size: 0.88rem;
+  }
+
+  .home-topbar-links {
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    a {
+      font-size: 0.68rem;
+    }
+  }
+
+  .home-topbar-tools {
+    gap: 0.4rem;
   }
 }

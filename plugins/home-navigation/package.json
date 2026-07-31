@@ -1,0 +1,27 @@
+{
+  "name": "home-navigation",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./index.js"
+  },
+  "quartz": {
+    "name": "home-navigation",
+    "displayName": "Home Navigation",
+    "category": [
+      "component"
+    ],
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "defaultOrder": 50,
+    "defaultEnabled": true,
+    "components": {
+      "HomeNavigation": {
+        "displayName": "Home Navigation",
+        "defaultPosition": "header",
+        "defaultPriority": 10
+      }
+    }
+  }
+}

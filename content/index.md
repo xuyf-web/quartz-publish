@@ -7,19 +7,19 @@ description: 汇集大气科学研究、公开项目、论文、可下载工具�
   <p class="home-kicker">ATMOSPHERE · AI · OPEN RESEARCH</p>
   <h1>亦非笔记</h1>
   <p class="home-lead">把复杂的科研过程，写成可以复用的方法</p>
-  <p class="home-description">这里汇集研究方向、公开项目、论文、可下载工具与专题笔记。内容不仅记录“怎么做”，也尽量说明适用条件、验证方法和容易忽略的边界。</p>
+  <p class="home-description">这里整理我正在推进的研究和公开项目，也持续更新论文、科研方法、脚本与笔记。发布前，我会尽量核对结果，并写清哪些场景可以直接参考、哪些地方仍需自行判断。</p>
 </div>
 
-<div class="home-section-heading">
+<div class="home-section-heading" id="research-work">
   <p>PROFILE · PROJECTS · PUBLICATIONS</p>
-  <h2>研究与公开工作</h2>
+  <h2>研究工作</h2>
 </div>
 
 <section class="profile-panel">
   <div class="profile-intro">
     <p class="profile-eyebrow">ATMOSPHERIC SCIENCE · OPEN RESEARCH</p>
     <h3>Evan</h3>
-    <p>大气科学博士研究生，关注新粒子生成、臭氧污染，以及大气模式、数据分析与智能科研工具的结合。</p>
+    <p>大气科学博士研究生，目前关注臭氧污染、AI 算法与风场降尺度，也在搭建大气模式、数据分析和科研自动化相关工具。</p>
     <div class="profile-links">
       <a href="https://github.com/xuyf-web">GitHub <span aria-hidden="true">↗</span></a>
       <a href="https://orcid.org/0009-0001-8081-5984">ORCID <span aria-hidden="true">↗</span></a>
@@ -47,36 +47,7 @@ description: 汇集大气科学研究、公开项目、论文、可下载工具�
   </div>
 </section>
 
-<div class="home-section-heading">
-  <p>RESOURCES · DOWNLOADS</p>
-  <h2>文件与脚本</h2>
-</div>
-
-<div class="resource-grid">
-  <section class="resource-card resource-lsf">
-    <div class="resource-meta"><span>BASH</span><time datetime="2026-07-31">2026-07-31</time></div>
-    <h3><code>lsf-nodes.sh</code></h3>
-    <p>合并 LSF 作业、主机、负载和调度状态，快速查看 CPU 节点剩余槽位与资源压力。</p>
-    <div class="resource-actions">
-      <a href="./files/lsf-nodes">查看说明</a>
-      <a class="resource-download" href="./static/files/lsf-nodes.sh" download>下载 .sh</a>
-    </div>
-  </section>
-
-  <section class="resource-card resource-gpu">
-    <div class="resource-meta"><span>BASH</span><time datetime="2026-07-31">2026-07-31</time></div>
-    <h3><code>list-gpu.sh</code></h3>
-    <p>汇总 NVIDIA GPU 利用率、显存、温度和计算进程，并补充用户、运行时间与完整命令。</p>
-    <div class="resource-actions">
-      <a href="./files/list-gpu">查看说明</a>
-      <a class="resource-download" href="./static/files/list-gpu.sh" download>下载 .sh</a>
-    </div>
-  </section>
-</div>
-
-<a class="resource-index-link" href="./files/">进入文件分享 <span aria-hidden="true">→</span></a>
-
-<div class="home-section-heading">
+<div class="home-section-heading" id="featured-notes">
   <p>NOTES · COLLECTIONS</p>
   <h2>专题笔记</h2>
 </div>
@@ -131,7 +102,36 @@ description: 汇集大气科学研究、公开项目、论文、可下载工具�
   </section>
 </div>
 
+<div class="home-section-heading" id="file-sharing">
+  <p>RESOURCES · DOWNLOADS</p>
+  <h2>文件分享</h2>
+</div>
+
+<div class="resource-grid">
+  <section class="resource-card resource-lsf">
+    <div class="resource-meta"><span>BASH</span><time datetime="2026-07-31">2026-07-31</time></div>
+    <h3><code>lsf-nodes.sh</code></h3>
+    <p>合并 LSF 作业、主机、负载和调度状态，快速查看 CPU 节点剩余槽位与资源压力。</p>
+    <div class="resource-actions">
+      <a href="./files/lsf-nodes">查看说明</a>
+      <a class="resource-download" href="./static/files/lsf-nodes.sh" download>下载 .sh</a>
+    </div>
+  </section>
+
+  <section class="resource-card resource-gpu">
+    <div class="resource-meta"><span>BASH</span><time datetime="2026-07-31">2026-07-31</time></div>
+    <h3><code>list-gpu.sh</code></h3>
+    <p>汇总 NVIDIA GPU 利用率、显存、温度和计算进程，并补充用户、运行时间与完整命令。</p>
+    <div class="resource-actions">
+      <a href="./files/list-gpu">查看说明</a>
+      <a class="resource-download" href="./static/files/list-gpu.sh" download>下载 .sh</a>
+    </div>
+  </section>
+</div>
+
+<a class="resource-index-link" href="./files/">进入文件分享 <span aria-hidden="true">→</span></a>
+
 <div class="home-note">
   <span>持续更新</span>
-  <p>使用左侧搜索可以检索文章标题与正文。文章页保留目录、关系图谱和反向链接，首页只负责认识网站与选择阅读入口。</p>
+  <p>从顶部导航可以直接进入研究工作、专题笔记与文件分享，也可以搜索标题、正文和标签。阅读文章时，左侧可以按合集、文件和标签继续浏览，右侧目录用于定位当前章节。</p>
 </div>
