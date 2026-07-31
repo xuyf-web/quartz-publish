@@ -1,5 +1,208 @@
 @use "./variables.scss" as *;
 
+// Underwater defines its own palette at high specificity. Keep its character,
+// but raise all recurring text and link colours above WCAG AA contrast.
+:root:root[saved-theme="light"] {
+  --gray: #696477;
+  --darkgray: #575279;
+  --secondary: #9d4451;
+  --tertiary: #3f7580;
+  --muted: var(--gray);
+  --text-muted: var(--gray);
+  --text-faint: var(--gray);
+}
+
+:root:root[saved-theme="dark"] {
+  --gray: #aaa6c1;
+  --darkgray: #e0def4;
+  --secondary: #ebbcba;
+  --tertiary: #9ccfd8;
+  --muted: var(--gray);
+  --text-muted: var(--gray);
+  --text-faint: var(--gray);
+}
+
+// Reading surfaces use stronger contrast than the decorative Underwater defaults.
+article,
+.content-meta,
+.breadcrumb-container,
+.sidebar,
+footer {
+  color: var(--darkgray);
+}
+
+.content-meta,
+.breadcrumb-container,
+.sidebar p,
+.sidebar li,
+footer,
+.home-section-heading p,
+.home-article-list time {
+  color: var(--gray);
+}
+
+:root:root body {
+  .page-title,
+  .page-title a,
+  .article-title,
+  .center article h1,
+  .center article h3 {
+    color: var(--tertiary);
+  }
+
+  .center article h2,
+  .sidebar h3 {
+    color: var(--secondary);
+  }
+
+  .breadcrumb-container a,
+  a.internal.tag-link {
+    color: var(--secondary);
+  }
+
+  a.internal.tag-link {
+    background: color-mix(in srgb, var(--secondary) 12%, transparent);
+  }
+
+  ul.toc-content.overflow > li > a {
+    color: var(--gray);
+    opacity: 1;
+  }
+
+  ul.toc-content.overflow > li > a.in-view {
+    color: var(--secondary);
+    opacity: 1;
+  }
+}
+
+// Code blocks remain visually separate from prose in both colour modes.
+article pre {
+  margin: 1.35rem 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #b9c5cb;
+  border-radius: 10px;
+  background: #edf2f4;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 72%);
+}
+
+:root:root[saved-theme="light"] body article pre {
+  border-color: #c4bbc9;
+  background: #e9e2df;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 70%);
+}
+
+article pre > code {
+  background: transparent;
+}
+
+article :not(pre) > code {
+  border: 1px solid color-mix(in srgb, var(--secondary) 22%, var(--lightgray));
+  background: color-mix(in srgb, var(--secondary) 9%, var(--light));
+}
+
+.clipboard-button {
+  position: absolute;
+  z-index: 2;
+  top: 0.55rem;
+  right: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.38rem 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--secondary) 35%, var(--lightgray));
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--light) 92%, var(--secondary));
+  color: var(--darkgray);
+  font: 600 0.75rem/1 var(--bodyFont);
+  opacity: 1;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+
+  svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  &:hover {
+    border-color: var(--secondary);
+    background: color-mix(in srgb, var(--light) 82%, var(--secondary));
+    color: var(--dark);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
+  }
+
+  &[data-copy-state="copied"] {
+    border-color: var(--tertiary);
+    background: color-mix(in srgb, var(--light) 80%, var(--tertiary));
+    color: var(--dark);
+  }
+
+  &[data-copy-state="failed"] {
+    border-color: #a94747;
+    color: #8c2f2f;
+  }
+}
+
+// Article media follows the reading column instead of hugging the left edge.
+.center article img {
+  display: block;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
+.center article p > img + em,
+.center article p > a:has(> img) + em {
+  display: block;
+  margin-top: -0.85rem;
+  text-align: center;
+  transform: none;
+}
+
+// Tables fill the available reading width and scroll only when their data requires it.
+.center article .table-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.4rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--lightgray);
+  border-radius: 10px;
+}
+
+.center article .table-container > table {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.center article th {
+  background: color-mix(in srgb, var(--secondary) 9%, var(--light));
+  color: var(--dark);
+}
+
+:root:root[saved-theme="dark"] {
+  body article pre {
+    border-color: #4e4962;
+    background: #15131f;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
+  }
+
+  .clipboard-button[data-copy-state="failed"] {
+    border-color: #e19595;
+    color: #f0b0b0;
+  }
+}
+
 // The homepage is a site landing page rather than a note.
 body[data-slug="index"] {
   .page > #quartz-body {
