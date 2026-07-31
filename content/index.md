@@ -1,18 +1,84 @@
 ---
 title: 亦非笔记
-description: 从大气模式与数据实操，到 AI 前沿、论文方法和科研工作流，记录可以复用的操作与思考。
+description: 汇集大气科学研究、公开项目、论文、可下载工具与专题笔记的个人网站。
 ---
 
 <div class="home-hero">
-  <p class="home-kicker">ATMOSPHERE · AI · RESEARCH WORKFLOW</p>
+  <p class="home-kicker">ATMOSPHERE · AI · OPEN RESEARCH</p>
   <h1>亦非笔记</h1>
   <p class="home-lead">把复杂的科研过程，写成可以复用的方法</p>
-  <p class="home-description">这里关注大气模式、人工智能降尺度、论文方法与科研工具。文章不仅记录“怎么做”，也尽量说明适用条件、验证方法和容易忽略的边界。</p>
+  <p class="home-description">这里汇集研究方向、公开项目、论文、可下载工具与专题笔记。内容不仅记录“怎么做”，也尽量说明适用条件、验证方法和容易忽略的边界。</p>
 </div>
 
 <div class="home-section-heading">
-  <p>COLLECTIONS</p>
-  <h2>最近更新</h2>
+  <p>PROFILE · PROJECTS · PUBLICATIONS</p>
+  <h2>研究与公开工作</h2>
+</div>
+
+<section class="profile-panel">
+  <div class="profile-intro">
+    <p class="profile-eyebrow">ATMOSPHERIC SCIENCE · OPEN RESEARCH</p>
+    <h3>Evan</h3>
+    <p>大气科学博士研究生，关注新粒子生成、臭氧污染，以及大气模式、数据分析与智能科研工具的结合。</p>
+    <div class="profile-links">
+      <a href="https://github.com/xuyf-web">GitHub <span aria-hidden="true">↗</span></a>
+      <a href="https://orcid.org/0009-0001-8081-5984">ORCID <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="skill-cloud" aria-label="常用技术">
+      <span>Python</span><span>Linux</span><span>Bash</span><span>Git</span><span>Obsidian</span>
+    </div>
+  </div>
+  <div class="profile-details">
+    <div class="profile-group">
+      <p>OPEN SOURCE</p>
+      <ul class="profile-list">
+        <li><a href="https://github.com/xuyf-web/atmos-modeling-skills">atmos-modeling-skills</a><span>WRF/WRF-Chem 全流程规程与 LPDM 足迹可视化技能</span></li>
+        <li><a href="https://github.com/xuyf-web/literature-autoreview">literature-autoreview</a><span>文献监测、arXiv 深读与期刊摘要扫描工作流</span></li>
+      </ul>
+      <a class="profile-more" href="https://github.com/xuyf-web?tab=repositories">查看全部公开项目 <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="profile-group profile-publications">
+      <p>SELECTED PUBLICATIONS</p>
+      <ul class="publication-list">
+        <li><time>2023</time><a href="https://doi.org/10.1016/j.atmosenv.2023.119757">Meteorological contribution to an O₃ pollution episode in Guangzhou</a></li>
+        <li><time>2023</time><a href="https://doi.org/10.19674/j.cnki.issn1000-6923.20230129.001">广东省区域臭氧污染过程三维输送特征与定量来源解析</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="home-section-heading">
+  <p>RESOURCES · DOWNLOADS</p>
+  <h2>文件与脚本</h2>
+</div>
+
+<div class="resource-grid">
+  <section class="resource-card resource-lsf">
+    <div class="resource-meta"><span>BASH</span><time datetime="2026-07-31">2026-07-31</time></div>
+    <h3><code>lsf-nodes.sh</code></h3>
+    <p>合并 LSF 作业、主机、负载和调度状态，快速查看 CPU 节点剩余槽位与资源压力。</p>
+    <div class="resource-actions">
+      <a href="./files/lsf-nodes">查看说明</a>
+      <a class="resource-download" href="./static/files/lsf-nodes.sh" download>下载 .sh</a>
+    </div>
+  </section>
+
+  <section class="resource-card resource-gpu">
+    <div class="resource-meta"><span>BASH</span><time datetime="2026-07-31">2026-07-31</time></div>
+    <h3><code>list-gpu.sh</code></h3>
+    <p>汇总 NVIDIA GPU 利用率、显存、温度和计算进程，并补充用户、运行时间与完整命令。</p>
+    <div class="resource-actions">
+      <a href="./files/list-gpu">查看说明</a>
+      <a class="resource-download" href="./static/files/list-gpu.sh" download>下载 .sh</a>
+    </div>
+  </section>
+</div>
+
+<a class="resource-index-link" href="./files/">进入文件分享 <span aria-hidden="true">→</span></a>
+
+<div class="home-section-heading">
+  <p>NOTES · COLLECTIONS</p>
+  <h2>专题笔记</h2>
 </div>
 
 <div class="collection-grid">
@@ -33,9 +99,9 @@ description: 从大气模式与数据实操，到 AI 前沿、论文方法和科
     <h3>科研工作流与工具链</h3>
     <p>从版本控制、自动化到服务器工具，让研究过程更清楚、更可靠。</p>
     <ul class="home-article-list">
+      <li><a href="./lsf-gpu-node-tools">两个命令，看清 LSF 节点和 GPU 占用</a><time datetime="2026-07-31">2026-07-31</time></li>
       <li><a href="./research-git">AI 时代，科研项目为什么更需要 Git</a><time datetime="2026-07-23">2026-07-23</time></li>
       <li><a href="./tmux-server-workbench">tmux：把一个终端变成服务器工作台</a><time datetime="2026-07-10">2026-07-10</time></li>
-      <li><a href="./bark-job-notifications">用 Bark 发通知：掌控任务进度</a><time datetime="2026-07-04">2026-07-04</time></li>
     </ul>
     <a class="collection-more" href="./collections/research-workflow/">查看全部文章 <span aria-hidden="true">→</span></a>
   </section>
