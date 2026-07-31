@@ -1,3 +1,304 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// The homepage is a site landing page rather than a note.
+body[data-slug="index"] {
+  .page > #quartz-body {
+    grid-template-columns: 280px minmax(0, 1fr);
+    grid-template-areas:
+      "grid-sidebar-left grid-header"
+      "grid-sidebar-left grid-center"
+      "grid-sidebar-left grid-footer";
+  }
+
+  .right.sidebar,
+  .page-header,
+  .center > hr {
+    display: none;
+  }
+
+  .center {
+    padding: 5.5rem 3rem 1rem;
+  }
+
+  article {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  footer {
+    max-width: 1080px;
+    padding: 0 3rem;
+  }
+}
+
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.2rem, 6vw, 5rem);
+  border: 1px solid color-mix(in srgb, var(--secondary) 22%, transparent);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at 86% 14%,
+      color-mix(in srgb, var(--tertiary) 23%, transparent) 0,
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--light) 88%, var(--secondary)) 0%,
+      color-mix(in srgb, var(--light) 94%, var(--tertiary)) 100%
+    );
+  box-shadow: 0 24px 80px color-mix(in srgb, var(--dark) 8%, transparent);
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 12rem;
+    height: 12rem;
+    right: -3rem;
+    bottom: -5rem;
+    border: 1px solid color-mix(in srgb, var(--secondary) 25%, transparent);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 1.8rem color-mix(in srgb, var(--tertiary) 7%, transparent),
+      0 0 0 3.6rem color-mix(in srgb, var(--secondary) 5%, transparent);
+    pointer-events: none;
+  }
+
+  .home-kicker {
+    margin: 0 0 1.3rem;
+    color: var(--secondary);
+    font-family: var(--codeFont);
+    font-size: 0.76rem;
+    font-weight: 650;
+    letter-spacing: 0.14em;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--dark);
+    font-family: var(--titleFont);
+    font-size: clamp(2.7rem, 8vw, 5.8rem);
+    line-height: 0.96;
+    letter-spacing: -0.055em;
+  }
+
+  .home-lead {
+    max-width: 760px;
+    margin: 1.4rem 0 0;
+    color: var(--dark);
+    font-family: var(--headerFont);
+    font-size: clamp(1.25rem, 2.6vw, 2rem);
+    font-weight: 620;
+    line-height: 1.45;
+  }
+
+  .home-description {
+    max-width: 720px;
+    margin: 1.3rem 0 0;
+    font-size: 1.02rem;
+    line-height: 1.85;
+  }
+}
+
+.home-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 4.5rem 0 1.5rem;
+
+  p {
+    order: 2;
+    margin: 0 0 0.35rem;
+    color: var(--gray);
+    font-family: var(--codeFont);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--dark);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.collection-card {
+  --collection-accent: var(--secondary);
+  display: flex;
+  min-height: 16rem;
+  flex-direction: column;
+  padding: 1.65rem;
+  border: 1px solid color-mix(in srgb, var(--collection-accent) 22%, var(--lightgray));
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--light) 96%, var(--collection-accent));
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--collection-accent) 46%, var(--lightgray));
+    box-shadow: 0 14px 36px color-mix(in srgb, var(--collection-accent) 10%, transparent);
+  }
+
+  &.collection-atmosphere {
+    --collection-accent: var(--secondary);
+  }
+
+  &.collection-workflow {
+    --collection-accent: var(--tertiary);
+  }
+
+  &.collection-ai {
+    --collection-accent: #b4637a;
+  }
+
+  &.collection-papers {
+    --collection-accent: #907aa9;
+  }
+
+  .collection-label {
+    margin: 0 0 1rem;
+    color: var(--collection-accent);
+    font-family: var(--codeFont);
+    font-size: 0.7rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 1.3rem;
+  }
+
+  > p:not(.collection-label, .collection-empty) {
+    margin: 0.8rem 0 1.4rem;
+    line-height: 1.7;
+  }
+
+  .collection-empty {
+    width: fit-content;
+    margin: auto 0 0;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--collection-accent) 10%, transparent);
+    color: var(--collection-accent);
+    font-size: 0.82rem;
+  }
+}
+
+.home-article-list {
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding-top: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--collection-accent) 17%, var(--lightgray));
+  }
+
+  a {
+    color: var(--dark);
+    font-weight: 650;
+    line-height: 1.5;
+  }
+
+  a:hover {
+    color: var(--collection-accent);
+  }
+
+  time {
+    color: var(--gray);
+    font-family: var(--codeFont);
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+}
+
+.home-note {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.1rem;
+  align-items: start;
+  margin: 2.2rem 0 0;
+  padding: 1.2rem 1.4rem;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--lightgray) 45%, transparent);
+
+  span {
+    padding: 0.24rem 0.62rem;
+    border-radius: 999px;
+    background: var(--secondary);
+    color: var(--light);
+    font-size: 0.78rem;
+    font-weight: 650;
+    white-space: nowrap;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.7;
+  }
+}
+
+@media all and (max-width: 1200px) {
+  body[data-slug="index"] {
+    .page > #quartz-body {
+      grid-template-columns: 260px minmax(0, 1fr);
+    }
+
+    .center {
+      padding: 4rem 2rem 1rem;
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  body[data-slug="index"] {
+    .page > #quartz-body {
+      display: block;
+    }
+
+    .center {
+      padding: 2rem 0 1rem;
+    }
+
+    footer {
+      padding: 0;
+    }
+  }
+
+  .home-hero {
+    border-radius: 22px;
+
+    &::after {
+      opacity: 0.7;
+    }
+  }
+
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .collection-card {
+    min-height: 0;
+  }
+
+  .home-note {
+    grid-template-columns: 1fr;
+  }
+}
