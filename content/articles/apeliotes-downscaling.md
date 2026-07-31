@@ -1,19 +1,20 @@
 ---
-title: arXiv｜Apeliotes：从全球基础模型生成公里级多层大气场
-description: 解读 Aurora 与 CorrDiff 组合的公里级多层大气场生成框架，以及训练和实际预报驱动之间的差异。
+title: "arXiv｜Apeliotes：从全球基础模型生成公里级多层大气场"
+description: "解读 Aurora 与 CorrDiff 组合的公里级多层大气场生成框架及其训练和预报边界。"
 date: 2026-07-29
+collection: "论文与方法解析"
 permalink: /apeliotes-downscaling
 tags:
   - 文献精读
   - AI 降尺度
   - 扩散模型
+  - Aurora
 ---
-
 全球 AI 天气模型可以很快给出未来大尺度天气形势，区域应用还需要更细的地形结构、近地面风场和垂直廓线。Apeliotes 尝试把这两层能力接起来：Aurora 负责全球预报，区域 CorrDiff 模型把结果降到 4 km，并直接生成输入中没有的多层风场和风功率密度。
 
 这套框架希望把一个预训练全球基础模型变成区域生成系统的实时驱动，同时把输出从常见的地面变量扩展到 22 个通道。
 
-> [!summary] 摘要
+> [!summary]
 > Apeliotes 由 Aurora 全球基础模型和区域 CorrDiff 扩散降尺度模型组成。区域模型使用 2007—2013 年成对 ERA5–WRF 数据训练，生成 4 km 的地面变量、七层风分量和两层风功率密度。
 >
 > 论文当前版本显示，使用 ERA5 输入时，10 m 风速和垂直风廓线表现优于使用 Aurora 输入；Aurora 提供了真正的预报驱动，也带来了训练—推理分布差异。框架证明了“全球基础模型 + 区域生成模型”可以运行，距离独立观测验证和跨区域应用仍有一段距离。
@@ -118,4 +119,8 @@ Apeliotes 把 Aurora 与区域 CorrDiff 连接起来，形成“全球预报—�
 
 论文当前版本最有说服力的部分，是区域扩散模型能够从 ERA5 输入逼近留出年份的 WRF 场。换成 Aurora 后，框架获得了真正的未来预报能力，误差也随训练—推理分布差异增加。这个变化没有削弱框架的价值，反而指出了下一步最需要解决的问题：用区域观测和高分辨率资料校准全球基础模型的输入偏差。
 
-既然看到这里了，如果觉得不错，随手点个赞、在看、转发三连吧，如果想第一时间收到推送，也可以给我个星标⭐，感谢您的支持与认可
+## 相关阅读
+
+- [[corrdiff-paper|文献精读｜CorrDiff 算法]]
+- [[kilogen-wind-downscaling|arXiv｜KiloGen：用扩散后验采样补回复杂地形风场]]
+- [[pisr-physics-super-resolution|arXiv｜PISR：把原始方程写进大气超分辨率]]

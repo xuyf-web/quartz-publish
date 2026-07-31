@@ -1,21 +1,19 @@
 ---
-title: FLEXPART 从编译到运行
-description: 区分标准 FLEXPART 11 与 FLEXPART-WRF，梳理编译、输入配置、最小算例和结果检查。
+title: "FLEXPART 从编译到运行"
+description: "区分标准 FLEXPART 11 与 FLEXPART-WRF，梳理编译、气象输入、运行配置和结果检查。"
 date: 2026-07-18
+collection: "大气模式与数据实操"
 permalink: /flexpart-guide
 tags:
   - FLEXPART
-  - 大气模式
-  - 科研教程
+  - 拉格朗日粒子模型
+  - 大气输送
 ---
-
-大家好，这里是亦非笔记。
-
 后向轨迹能告诉我们气团大致从哪里来，但当问题进一步变成“某个区域对观测点的潜在贡献有多大”“沉降、湍流和对流会怎样改变输送”时，单条轨迹往往就不够了。FLEXPART 把气团表示为大量计算粒子，可以在同一套框架中处理输送、湍流扩散、干湿沉降和衰变，也能做前向与后向模拟。
 
 这篇文章重点放在两条常见路线：由 ECMWF/GFS 气象场驱动的标准 FLEXPART 11，以及直接读取 `wrfout` 的 FLEXPART-WRF。命令本身不算多，真正容易出问题的是版本、气象输入、时间范围和物理选项没有互相对上。
 
-> [!summary] 摘要
+> [!summary]
 > 标准 FLEXPART 11 与 FLEXPART-WRF 是两套相关但不同的程序。前者当前主要读取 ECMWF 和 NCEP/GFS 气象场，配置由 `COMMAND`、`RELEASES`、`OUTGRID`、`pathnames` 和 `AVAILABLE` 等文件组成；后者直接读取 WRF NetCDF 输出，主要通过一个 `flexwrf.input` 设置运行。
 >
 > 第一次操作时，建议先完成一个短时段、单释放点、较少粒子的最小算例。确认时间、位置和输出量都正确后，再扩展空间范围与粒子数。
@@ -93,7 +91,7 @@ make -j -f makefile_intel eta=no
 
 编译结果为 `FLEXPART`。使用 GNU 编译器时，把 `makefile_intel` 换成仓库中对应的 GNU Makefile，具体文件名以当前版本源码为准。
 
-> [!important] 重要
+> [!important]
 > `FLEXPART_ETA` 和 `FLEXPART` 的差别由气象场垂直坐标决定，并不是可以随意互换的两个文件名。输入数据来自 ERA5，也不代表普通的压力层 ERA5 文件可以直接运行 FLEXPART；模型需要完整且格式正确的气象变量。
 
 ## 准备气象场
@@ -175,7 +173,7 @@ FLEXPART 11 仓库的 `options/` 中带有模板，建议复制模板再改，�
 
 `RELEASES` 定义粒子从什么时间、什么位置和高度进入模拟。后向计算中，这里的释放区域实际代表接收区域。高度还必须配合 `ZKIND` 解读：`1` 是离地高度，`2` 是海拔高度，`3` 是 hPa 气压。
 
-> [!warning] 注意
+> [!warning]
 > 经纬度、UTC 时间和高度基准是最常见的静默错误。程序可能正常结束，但结果已经偏离原本的问题。经纬度框不要直接拿投影坐标填写，站点的本地时间也要先换成 UTC。
 
 `OUTGRID` 决定结果被统计到什么网格。拉格朗日模型的输出网格可以和气象网格不同，但必须位于计算域内。分辨率设得比气象场精细很多，并不会凭空增加输送信息，只会增加随机噪声、文件体积和计算开销。
@@ -287,7 +285,7 @@ ncdump -h wrfout_d01_2026-07-01_00:00:00 \
 
 对流开关也需要和 WRF 设置一起看。如果 WRF 使用了对流参数化，FLEXPART-WRF 中通常也要考虑相应的次网格对流；高分辨率显式对流算例则要重新判断。这里没有一个只按水平分辨率就能机械决定的通用值。
 
-> [!warning] 注意
+> [!warning]
 > FLEXPART 11 文档中的 `LCONVECTION=0/1` 与某些 FLEXPART-WRF 3.3.x 输入文件里的 `0/3` 不是同一套取值约定。必须阅读手中源码附带的 `flexwrf.input` 注释，不能跨版本复制数字。
 
 ## 运行 FLEXPART-WRF
@@ -342,7 +340,7 @@ ulimit -s unlimited
 
 在我的运行记录中，这个错误在 FLEXPART-WRF 使用 `LCONVECTION=3` 时出现，内部 `maxval(igrid)` 达到异常大的量级；临时把对流开关设为 `0` 后，程序能够绕过报错。
 
-> [!warning] 注意
+> [!warning]
 > 关闭对流会改变垂直输送物理，只适合确认错误是否来自对流模块。生产模拟不能因为“能跑完”就直接沿用。还应检查 WRF 网格尺寸、投影、对流方案、输入变量和 FLEXPART-WRF 版本，必要时构造短算例定位 `convmix_kfeta.f` 中的越界来源。
 
 ## `richardson not working -- bad h`
@@ -357,4 +355,7 @@ FLEXPART 的基本运行链条可以压缩成六步：选对程序版本，编�
 
 如果后面还要批量做多个站点或多个时次的后向模拟，我建议把“生成 RELEASES、检查 AVAILABLE、提交任务、扫描日志、整理 NetCDF”写成脚本，并把每次实验的版本与配置一起归档。FLEXPART 本身只是整条分析流程的一部分，可复现性更多取决于这些容易被忽略的文件。
 
-既然看到这里了，如果觉得不错，随手点个赞、在看、转发三连吧，如果想第一时间收到推送，也可以给我个星标⭐，感谢您的支持与认可
+## 相关阅读
+
+- [[lpdm-psc|利用后向足迹计算潜在源贡献]]
+- [[wrf-lcz|WRF 中如何接入 LCZ]]
