@@ -6,7 +6,7 @@ configuration:
   enablePopovers: true
   analytics: null
   locale: zh-CN
-  baseUrl: xuyf-web.github.io/quartz-publish
+  baseUrl: xuyf.net
   ignorePatterns:
     - private
     - templates
