@@ -22,6 +22,106 @@
   --text-faint: var(--gray);
 }
 
+// The articles folder uses a stable date column and gives tags the full title width.
+body[data-slug="articles/index"] {
+  .page-listing > div > ul.section-ul {
+    margin-top: 1.25rem;
+  }
+
+  li.section-li {
+    margin: 0;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--lightgray);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  li.section-li > .section {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    grid-template-areas:
+      "date title"
+      "date tags";
+    column-gap: 1.25rem;
+    row-gap: 0.6rem;
+    align-items: start;
+  }
+
+  li.section-li > .section > .meta {
+    grid-area: date;
+    margin: 0;
+    line-height: 1.5;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+
+    time {
+      display: inline-block;
+      white-space: nowrap;
+    }
+  }
+
+  li.section-li > .section > .desc {
+    grid-area: title;
+    min-width: 0;
+
+    h3 {
+      margin: 0;
+      line-height: 1.45;
+    }
+  }
+
+  li.section-li > .section > ul.tags {
+    grid-area: tags;
+    display: flex;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    > li {
+      flex: 0 0 auto;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    a.tag-link {
+      display: inline-flex;
+      margin: 0;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media all and (max-width: 600px) {
+  body[data-slug="articles/index"] {
+    li.section-li {
+      padding: 1.1rem 0;
+    }
+
+    li.section-li > .section {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "date"
+        "title"
+        "tags";
+      row-gap: 0.55rem;
+    }
+
+    li.section-li > .section > .meta {
+      font-size: 0.88rem;
+    }
+
+    li.section-li > .section > ul.tags {
+      display: flex;
+    }
+  }
+}
+
 // Reading surfaces use stronger contrast than the decorative Underwater defaults.
 article,
 .content-meta,
