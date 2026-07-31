@@ -9,28 +9,42 @@ const collections = [
   ["论文与方法解析", "collections/papers-methods/index"],
 ]
 
-const navLink = (href, title) =>
+const navLink = (href, title, active = false, current = "page") =>
   jsx("li", {
     children: jsx("a", {
-      class: "internal sidebar-nav-link",
+      class: `internal sidebar-nav-link${active ? " is-active" : ""}`,
       href,
+      ...(active ? { "aria-current": current } : {}),
       children: title,
     }),
   })
 
-const collectionLinks = (href) => collections.map(([title, slug]) => navLink(href(slug), title))
+const collectionLinks = (href, fileData) =>
+  collections.map(([title, slug]) => {
+    const isCollectionPage = fileData.slug === slug
+    const containsCurrentArticle = fileData.frontmatter?.collection === title
+    return navLink(
+      href(slug),
+      title,
+      isCollectionPage || containsCurrentArticle,
+      isCollectionPage ? "page" : "location",
+    )
+  })
 
-const fileLinks = (href, filePages) => [
-  navLink(href("files/index"), "全部文件"),
-  filePages.map((page) => navLink(href(page.slug), page.frontmatter?.title ?? page.slug)),
+const fileLinks = (href, filePages, fileData) => [
+  navLink(href("files/index"), "全部文件", fileData.slug === "files/index"),
+  filePages.map((page) =>
+    navLink(href(page.slug), page.frontmatter?.title ?? page.slug, fileData.slug === page.slug),
+  ),
 ]
 
-const tagLinks = (href, popularTags) =>
+const tagLinks = (href, popularTags, fileData) =>
   popularTags.map(([tag, count]) =>
     jsx("li", {
       children: jsxs("a", {
-        class: "internal tag-link",
+        class: `internal tag-link${fileData.slug === `tags/${slugTag(tag)}` ? " is-active" : ""}`,
         href: href(`tags/${slugTag(tag)}`),
+        ...(fileData.slug === `tags/${slugTag(tag)}` ? { "aria-current": "page" } : {}),
         children: [tag, jsx("small", { children: count })],
       }),
     }),
@@ -71,13 +85,13 @@ export const SidebarNavigation = () => {
             jsxs("section", {
               children: [
                 jsx("h3", { children: "专题笔记" }),
-                jsx("ul", { children: collectionLinks(href) }),
+                jsx("ul", { children: collectionLinks(href, fileData) }),
               ],
             }),
             jsxs("section", {
               children: [
                 jsx("h3", { children: "文件导航" }),
-                jsxs("ul", { children: fileLinks(href, filePages) }),
+                jsxs("ul", { children: fileLinks(href, filePages, fileData) }),
               ],
             }),
             jsxs("section", {
@@ -95,7 +109,7 @@ export const SidebarNavigation = () => {
                 }),
                 jsx("ul", {
                   class: "sidebar-tag-list",
-                  children: tagLinks(href, popularTags),
+                  children: tagLinks(href, popularTags, fileData),
                 }),
               ],
             }),
@@ -130,7 +144,7 @@ export const SidebarNavigation = () => {
                     jsx("h3", { children: "专题笔记" }),
                     jsx("ul", {
                       class: "mobile-collection-list",
-                      children: collectionLinks(href),
+                      children: collectionLinks(href, fileData),
                     }),
                   ],
                 }),
@@ -139,7 +153,7 @@ export const SidebarNavigation = () => {
                     jsx("h3", { children: "文件导航" }),
                     jsxs("ul", {
                       class: "mobile-file-list",
-                      children: fileLinks(href, filePages),
+                      children: fileLinks(href, filePages, fileData),
                     }),
                   ],
                 }),
@@ -158,7 +172,7 @@ export const SidebarNavigation = () => {
                     }),
                     jsx("ul", {
                       class: "sidebar-tag-list",
-                      children: tagLinks(href, popularTags),
+                      children: tagLinks(href, popularTags, fileData),
                     }),
                   ],
                 }),

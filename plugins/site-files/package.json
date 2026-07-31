@@ -1,0 +1,20 @@
+{
+  "name": "site-files",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "quartz": {
+    "name": "site-files",
+    "displayName": "Site Files",
+    "description": "Emit root-level crawler discovery files.",
+    "category": [
+      "emitter"
+    ],
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "defaultOrder": 80,
+    "defaultEnabled": true
+  }
+}

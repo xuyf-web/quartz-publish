@@ -153,6 +153,9 @@ plugins:
     options:
       enableSiteMap: true
       enableRSS: true
+  - source: "./plugins/site-files"
+    enabled: true
+    order: 80
   - source: "@quartz-community/favicon"
     enabled: true
   - source: "@quartz-community/og-image"

@@ -27,9 +27,26 @@ export default (() => {
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
     const iconPath = joinSegments(baseDir, "static/icon.png")
 
-    // Url of current page
-    const socialUrl =
-      fileData.slug === "404" ? url.toString() : joinSegments(url.toString(), fileData.slug!)
+    // URL of the current page. Keep the homepage canonical at `/` instead of `/index`.
+    const siteBasePath = url.pathname.replace(/\/$/, "")
+    const pagePath =
+      fileData.slug === "404"
+        ? siteBasePath || "/"
+        : fileData.slug === "index"
+          ? `${siteBasePath}/`
+          : joinSegments(siteBasePath, fileData.slug!)
+    const socialUrl = new URL(pagePath, url.origin).toString()
+    const websiteSchema =
+      fileData.slug === "index"
+        ? JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: cfg.pageTitle,
+            url: socialUrl,
+            description,
+            inLanguage: cfg.locale,
+          })
+        : undefined
 
     const usesCustomOgImage = ctx.cfg.plugins.emitters.some((e) => e.name === "CustomOgImages")
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
@@ -91,7 +108,27 @@ export default (() => {
 
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
+        <meta name="robots" content="index,follow,max-image-preview:large" />
         <meta name="generator" content="Quartz" />
+        {cfg.baseUrl && (
+          <>
+            <link rel="canonical" href={socialUrl} />
+            <link
+              rel="sitemap"
+              type="application/xml"
+              href={`https://${cfg.baseUrl}/sitemap.xml`}
+            />
+            <link
+              rel="alternate"
+              type="application/rss+xml"
+              title={`${cfg.pageTitle} RSS`}
+              href={`https://${cfg.baseUrl}/index.xml`}
+            />
+          </>
+        )}
+        {websiteSchema && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: websiteSchema }} />
+        )}
 
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
