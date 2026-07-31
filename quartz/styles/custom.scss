@@ -532,6 +532,21 @@ body[data-slug="index"] {
   }
 }
 
+.collection-more {
+  display: inline-flex;
+  width: fit-content;
+  gap: 0.35rem;
+  align-items: center;
+  margin-top: 1.15rem;
+  color: var(--collection-accent);
+  font-size: 0.82rem;
+  font-weight: 650;
+
+  &:hover {
+    color: var(--dark);
+  }
+}
+
 .home-note {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
