@@ -1,5 +1,6 @@
 import { resolveRelative, slugTag } from "@quartz-community/utils"
 import { jsx, jsxs } from "preact/jsx-runtime"
+import styles from "./style.js"
 
 const collections = [
   ["大气模式与数据实操", "collections/atmospheric-practice/index"],
@@ -16,6 +17,24 @@ const navLink = (href, title) =>
       children: title,
     }),
   })
+
+const collectionLinks = (href) => collections.map(([title, slug]) => navLink(href(slug), title))
+
+const fileLinks = (href, filePages) => [
+  navLink(href("files/index"), "全部文件"),
+  filePages.map((page) => navLink(href(page.slug), page.frontmatter?.title ?? page.slug)),
+]
+
+const tagLinks = (href, popularTags) =>
+  popularTags.map(([tag, count]) =>
+    jsx("li", {
+      children: jsxs("a", {
+        class: "internal tag-link",
+        href: href(`tags/${slugTag(tag)}`),
+        children: [tag, jsx("small", { children: count })],
+      }),
+    }),
+  )
 
 export const SidebarNavigation = () => {
   const Component = ({ fileData, allFiles }) => {
@@ -42,61 +61,116 @@ export const SidebarNavigation = () => {
       )
       .slice(0, 8)
 
-    return jsxs("nav", {
-      class: "site-sidebar-nav desktop-only",
-      "aria-label": "内容导航",
+    return jsxs("div", {
+      class: "site-navigation",
       children: [
-        jsxs("section", {
+        jsxs("nav", {
+          class: "site-sidebar-nav desktop-only",
+          "aria-label": "内容导航",
           children: [
-            jsx("h3", { children: "专题笔记" }),
-            jsx("ul", {
-              children: collections.map(([title, slug]) => navLink(href(slug), title)),
-            }),
-          ],
-        }),
-        jsxs("section", {
-          children: [
-            jsx("h3", { children: "文件导航" }),
-            jsxs("ul", {
+            jsxs("section", {
               children: [
-                navLink(href("files/index"), "全部文件"),
-                filePages.map((page) =>
-                  navLink(href(page.slug), page.frontmatter?.title ?? page.slug),
-                ),
+                jsx("h3", { children: "专题笔记" }),
+                jsx("ul", { children: collectionLinks(href) }),
               ],
             }),
-          ],
-        }),
-        jsxs("section", {
-          children: [
-            jsxs("div", {
-              class: "sidebar-nav-heading",
+            jsxs("section", {
               children: [
-                jsx("h3", { children: "常用标签" }),
-                jsx("a", {
-                  class: "internal sidebar-nav-all",
-                  href: href("tags/index"),
-                  children: "全部",
+                jsx("h3", { children: "文件导航" }),
+                jsxs("ul", { children: fileLinks(href, filePages) }),
+              ],
+            }),
+            jsxs("section", {
+              children: [
+                jsxs("div", {
+                  class: "sidebar-nav-heading",
+                  children: [
+                    jsx("h3", { children: "常用标签" }),
+                    jsx("a", {
+                      class: "internal sidebar-nav-all",
+                      href: href("tags/index"),
+                      children: "全部",
+                    }),
+                  ],
+                }),
+                jsx("ul", {
+                  class: "sidebar-tag-list",
+                  children: tagLinks(href, popularTags),
                 }),
               ],
             }),
-            jsx("ul", {
-              class: "sidebar-tag-list",
-              children: popularTags.map(([tag, count]) =>
-                jsx("li", {
-                  children: jsxs("a", {
-                    class: "internal tag-link",
-                    href: href(`tags/${slugTag(tag)}`),
-                    children: [tag, jsx("small", { children: count })],
-                  }),
+          ],
+        }),
+        jsxs("details", {
+          class: "mobile-site-nav mobile-only",
+          children: [
+            jsxs("summary", {
+              class: "mobile-site-nav-summary",
+              children: [
+                jsxs("span", {
+                  class: "mobile-site-nav-heading",
+                  children: [
+                    jsx("strong", { children: "浏览本站内容" }),
+                    jsx("small", { children: "合集 · 文件 · 标签" }),
+                  ],
                 }),
-              ),
+                jsx("span", {
+                  class: "mobile-site-nav-chevron",
+                  "aria-hidden": "true",
+                  children: "⌄",
+                }),
+              ],
+            }),
+            jsxs("nav", {
+              class: "mobile-site-nav-panel",
+              "aria-label": "移动端内容导航",
+              children: [
+                jsxs("section", {
+                  children: [
+                    jsx("h3", { children: "专题笔记" }),
+                    jsx("ul", {
+                      class: "mobile-collection-list",
+                      children: collectionLinks(href),
+                    }),
+                  ],
+                }),
+                jsxs("section", {
+                  children: [
+                    jsx("h3", { children: "文件导航" }),
+                    jsxs("ul", {
+                      class: "mobile-file-list",
+                      children: fileLinks(href, filePages),
+                    }),
+                  ],
+                }),
+                jsxs("section", {
+                  children: [
+                    jsxs("div", {
+                      class: "sidebar-nav-heading",
+                      children: [
+                        jsx("h3", { children: "常用标签" }),
+                        jsx("a", {
+                          class: "internal sidebar-nav-all",
+                          href: href("tags/index"),
+                          children: "查看全部",
+                        }),
+                      ],
+                    }),
+                    jsx("ul", {
+                      class: "sidebar-tag-list",
+                      children: tagLinks(href, popularTags),
+                    }),
+                  ],
+                }),
+              ],
             }),
           ],
         }),
       ],
     })
   }
+
+  Component.css = styles
 
   return Component
 }
