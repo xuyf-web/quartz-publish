@@ -6,7 +6,7 @@ configuration:
   enablePopovers: true
   analytics: null
   locale: zh-CN
-  baseUrl: xuyf-web.github.io/research-notes-quartz
+  baseUrl: xuyf-web.github.io/quartz-publish
   ignorePatterns:
     - private
     - templates
@@ -232,7 +232,7 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/xuyf-web/research-notes-quartz
+        GitHub: https://github.com/xuyf-web/quartz-publish
     layout:
       position: footer
       priority: 50
