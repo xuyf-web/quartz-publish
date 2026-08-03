@@ -4,6 +4,54 @@ import { SearchExperience } from "../search-experience/index.js"
 
 const concatenateResources = (...resources) => resources.filter(Boolean).flat()
 
+const homeSearchOverlay = `
+const setupHomeSearchOverlay = () => {
+  const search = document.querySelector(
+    'body[data-slug="index"] .home-topbar-tools > .search',
+  )
+  const container = search?.querySelector(':scope > .search-container')
+  if (!search || !container || search.dataset.homeSearchOverlayReady === "true") return
+
+  search.dataset.homeSearchOverlayReady = "true"
+  const placeholder = document.createComment("home-search-placeholder")
+  let portaled = false
+
+  const restore = () => {
+    if (!portaled) return
+    placeholder.replaceWith(search)
+    search.removeAttribute("data-home-search-portal")
+    portaled = false
+  }
+
+  const syncOverlayLayer = () => {
+    if (container.classList.contains("active")) {
+      if (portaled || !search.parentNode) return
+      search.parentNode.insertBefore(placeholder, search)
+      document.body.appendChild(search)
+      search.setAttribute("data-home-search-portal", "")
+      container.querySelector(".search-bar")?.focus()
+      portaled = true
+      return
+    }
+
+    restore()
+  }
+
+  const observer = new MutationObserver(syncOverlayLayer)
+  observer.observe(container, { attributes: true, attributeFilter: ["class"] })
+  syncOverlayLayer()
+
+  window.addCleanup?.(() => {
+    observer.disconnect()
+    restore()
+    search.removeAttribute("data-home-search-overlay-ready")
+  })
+}
+
+document.addEventListener("nav", setupHomeSearchOverlay)
+document.addEventListener("render", setupHomeSearchOverlay)
+`
+
 const sectionNavigation = `
 const setupHomeSectionNavigation = () => {
   const topbar = document.querySelector(".home-topbar")
@@ -131,6 +179,7 @@ export const HomeNavigation = () => {
   Component.afterDOMLoaded = concatenateResources(
     SearchComponent.afterDOMLoaded,
     DarkmodeComponent.afterDOMLoaded,
+    homeSearchOverlay,
     sectionNavigation,
   )
 

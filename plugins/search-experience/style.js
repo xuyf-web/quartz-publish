@@ -54,13 +54,6 @@ export default `
   backdrop-filter: blur(14px) saturate(0.9);
 }
 
-/* The homepage header normally uses backdrop-filter itself. Disable that
-   compositing layer while search is open so the fixed overlay uses the viewport. */
-body[data-slug="index"] .page-header:has(.search-container.active) {
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
 .search > .search-container > .search-space {
   width: min(74rem, calc(100vw - 5rem));
   margin-top: clamp(4.5rem, 9vh, 7rem);
