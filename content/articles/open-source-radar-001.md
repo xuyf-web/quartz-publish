@@ -6,7 +6,7 @@ collection: "AI 前沿观察"
 permalink: /open-source-radar-001
 tags:
   - 开源雷达
-  - AI 编程
+  - AI编程
   - Agent
   - 开源工具
 ---

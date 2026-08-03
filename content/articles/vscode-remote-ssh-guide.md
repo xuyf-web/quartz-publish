@@ -5,7 +5,7 @@ date: 2026-06-26
 collection: "科研工作流与工具链"
 permalink: /vscode-remote-ssh-guide
 tags:
-  - VS Code
+  - VSCode
   - SSH
   - 远程开发
   - 服务器

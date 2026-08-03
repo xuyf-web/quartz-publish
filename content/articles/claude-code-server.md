@@ -5,10 +5,10 @@ date: 2026-07-03
 collection: "科研工作流与工具链"
 permalink: /claude-code-server
 tags:
-  - Claude Code
+  - ClaudeCode
   - SSH
   - 代理配置
-  - AI 编程
+  - AI编程
 ---
 Claude Code 在本地用起来很直接，放到服务器上就会多点麻烦：服务器如何访问 Claude 服务。
 

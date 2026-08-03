@@ -6,7 +6,7 @@ collection: "论文与方法解析"
 permalink: /apeliotes-downscaling
 tags:
   - 文献精读
-  - AI 降尺度
+  - AI降尺度
   - 扩散模型
   - Aurora
 ---

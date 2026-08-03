@@ -6,7 +6,7 @@ collection: "论文与方法解析"
 permalink: /pisr-physics-super-resolution
 tags:
   - 文献精读
-  - AI 降尺度
+  - AI降尺度
   - 物理约束
   - 超分辨率
 ---

@@ -5,7 +5,7 @@ date: 2024-04-28
 collection: "科研工作流与工具链"
 permalink: /vscode-extensions
 tags:
-  - VS Code
+  - VSCode
   - 编辑器
   - 插件
   - 效率工具

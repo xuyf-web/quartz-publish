@@ -6,7 +6,7 @@ collection: "论文与方法解析"
 permalink: /ocelot-observation-forecasting
 tags:
   - 文献精读
-  - AI 天气预报
+  - AI天气预报
   - 图神经网络
   - 地球观测
 ---

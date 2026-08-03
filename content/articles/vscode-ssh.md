@@ -5,7 +5,7 @@ date: 2025-02-17
 collection: "科研工作流与工具链"
 permalink: /vscode-ssh
 tags:
-  - VS Code
+  - VSCode
   - SSH
   - 远程开发
 ---

@@ -5,7 +5,7 @@ date: 2024-04-28
 collection: "科研工作流与工具链"
 permalink: /vscode-shortcuts
 tags:
-  - VS Code
+  - VSCode
   - 编辑器
   - 效率工具
 ---
