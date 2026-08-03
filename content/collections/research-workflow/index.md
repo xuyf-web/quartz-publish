@@ -22,6 +22,7 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/research-software-tools|【软件推荐】 常用工具]]
 - [[../../articles/obsidian-to-wechat|从Obsidian直接发布笔记]]
 - [[../../articles/claude-code-server|如何在服务器上使用 Claude Code]]
+- [[../../articles/lsf-gpu-node-tools|把基础命令整理成顺手的资源查看工具]]
 - [[../../articles/literature-automation|文献调研的自动化流程配置]]
 - [[../../articles/bark-job-notifications|用 Bark 发通知：掌控任务进度]]
 - [[../../articles/linux-research-tools|科研服务器上我常用的 Linux 小工具]]
