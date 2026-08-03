@@ -1,0 +1,36 @@
+{
+  "name": "search-experience",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./index.js"
+  },
+  "quartz": {
+    "name": "search-experience",
+    "displayName": "Search Experience",
+    "category": [
+      "component"
+    ],
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 50,
+    "defaultEnabled": true,
+    "components": {
+      "SearchExperience": {
+        "displayName": "Search Experience",
+        "defaultPosition": "left",
+        "defaultPriority": 20
+      }
+    },
+    "optionSchema": {
+      "enablePreview": {
+        "type": "boolean"
+      },
+      "fieldPriority": {
+        "type": "array"
+      }
+    }
+  }
+}

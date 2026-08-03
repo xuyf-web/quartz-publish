@@ -1,6 +1,6 @@
 import { Darkmode } from "@quartz-community/darkmode"
-import { Search } from "@quartz-community/search"
 import { jsx, jsxs } from "preact/jsx-runtime"
+import { SearchExperience } from "../search-experience/index.js"
 
 const concatenateResources = (...resources) => resources.filter(Boolean).flat()
 
@@ -77,7 +77,7 @@ document.addEventListener("render", setupHomeSectionNavigation)
 `
 
 export const HomeNavigation = () => {
-  const SearchComponent = Search({
+  const SearchComponent = SearchExperience({
     enablePreview: true,
     fieldPriority: ["title", "content", "tags"],
   })

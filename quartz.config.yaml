@@ -119,7 +119,20 @@ plugins:
     enabled: true
     options:
       useThemeFonts: true
-      fontOrigin: local
+      fontOrigin: selfHosted
+      title:
+        name: Schibsted Grotesk
+        weights: [400, 500, 600, 700, 800]
+      header:
+        name: Schibsted Grotesk
+        weights: [400, 500, 600, 700, 800]
+      body:
+        name: Source Sans Pro
+        weights: [400, 600, 700]
+        includeItalic: true
+      code:
+        name: IBM Plex Mono
+        weights: [400, 600]
   - source: "@quartz-themes/core"
     enabled: true
     options:
@@ -181,7 +194,7 @@ plugins:
       position: right
       priority: 10
       condition: not-index
-  - source: "@quartz-community/search"
+  - source: "./plugins/search-experience"
     enabled: true
     layout:
       position: left
