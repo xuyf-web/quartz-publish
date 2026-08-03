@@ -8,7 +8,6 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 ## 文章
 
 - [[../../articles/research-git|AI 时代，科研项目为什么更需要 Git]]
-- [[../../articles/lsf-gpu-node-tools|两个命令，看清 LSF 节点和 GPU 占用]]
 - [[../../articles/ai-literature-reading|AI如何助力文献阅读]]
 - [[../../articles/git-network|Git网络连接]]
 - [[../../articles/macbook-apps|MacBook 好用软件]]

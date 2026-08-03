@@ -70,7 +70,6 @@ description: 汇集大气科学研究、公开项目、论文、可下载工具�
     <h3>科研工作流与工具链</h3>
     <p>从版本控制、自动化到服务器工具，让研究过程更清楚、更可靠。</p>
     <ul class="home-article-list">
-      <li><a href="./lsf-gpu-node-tools">两个命令，看清 LSF 节点和 GPU 占用</a><time datetime="2026-07-31">2026-07-31</time></li>
       <li><a href="./research-git">AI 时代，科研项目为什么更需要 Git</a><time datetime="2026-07-23">2026-07-23</time></li>
       <li><a href="./tmux-server-workbench">tmux：把一个终端变成服务器工作台</a><time datetime="2026-07-10">2026-07-10</time></li>
     </ul>
