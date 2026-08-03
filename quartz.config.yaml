@@ -320,7 +320,7 @@ plugins:
 layout:
   groups:
     toolbar:
-      priority: 35
+      priority: 12
       direction: row
       gap: 0.5rem
   byPageType:
