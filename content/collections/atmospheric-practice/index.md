@@ -20,3 +20,4 @@ description: 记录大气模式、气象数据处理和可复现操作中的具�
 - [[../../articles/python-wrf-domain|【Python】设计与绘制WRF网格]]
 - [[../../articles/wrf-outfields|不重编译 WRF，如何用 outfields.txt 增减输出变量]]
 - [[../../articles/lpdm-psc|利用后向足迹计算潜在源贡献]]
+- [[../../articles/ai-weather-downscaling|利用深度学习对气象数据做精细化模拟]]

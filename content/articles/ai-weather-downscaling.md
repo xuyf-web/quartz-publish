@@ -2,7 +2,7 @@
 title: "利用深度学习对气象数据做精细化模拟"
 description: "解释 AI 气象降尺度的基本思路、主要方法与应用边界。"
 date: 2026-08-03
-collection: "AI 前沿观察"
+collection: "大气模式与数据实操"
 tags:
   - 气象数据
   - 生成式模型
