@@ -14,6 +14,7 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/vscode-remote-ssh-guide|VS Code 连接服务器及使用注意事项]]
 - [[../../articles/vscode-ssh|VS Code使用SSH]]
 - [[../../articles/ssh-x11-forwarding|Windows 和 macOS SSH X11 图形转发配置教程]]
+- [[../../articles/crontab-automation-foundation|crontab：你的自动化操作基石]]
 - [[../../articles/tmux-server-workbench|tmux：把一个终端变成服务器工作台]]
 - [[../../articles/uv-python-environments|uv 管理 Python 环境：从入门到和 Conda 的取舍]]
 - [[../../articles/vscode-shortcuts|【VS Code】常用快捷键]]
