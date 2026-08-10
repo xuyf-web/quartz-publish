@@ -179,6 +179,9 @@ plugins:
     enabled: false
   - source: "@quartz-community/content-page"
     enabled: true
+  - source: "./plugins/homepage-featured-notes"
+    enabled: true
+    order: 1
   - source: "@quartz-community/folder-page"
     enabled: true
   - source: "@quartz-community/tag-page"
