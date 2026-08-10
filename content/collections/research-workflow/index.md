@@ -27,6 +27,7 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/lsf-gpu-node-tools|把基础命令整理成顺手的资源查看工具]]
 - [[../../articles/literature-automation|文献调研的自动化流程配置]]
 - [[../../articles/bark-job-notifications|用 Bark 发通知：掌控任务进度]]
+- [[../../articles/disk-space-monitoring|磁盘空间又满了？用自动化做好监控]]
 - [[../../articles/linux-research-tools|科研服务器上我常用的 Linux 小工具]]
 - [[../../articles/research-automation|科研自动化流程]]
 - [[../../articles/research-project-folders|科研项目文件夹怎么组织]]
