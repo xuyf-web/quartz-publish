@@ -1,7 +1,7 @@
 ---
 title: "crontab：你的自动化操作基石"
 description: "从时间语法开始，讲清 crontab 的路径、工作目录、环境变量、依赖顺序和上线检查。"
-date: 2026-08-06
+date: 2026-08-10
 collection: "科研工作流与工具链"
 permalink: /crontab-automation-foundation
 tags:
