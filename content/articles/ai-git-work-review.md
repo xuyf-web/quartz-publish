@@ -1,7 +1,7 @@
 ---
 title: 让 AI 帮你回顾工作内容
 description: 把按项目整理的 Git 提交限定在报告周期内，再交给大语言模型形成待人工核对的工作回顾初稿。
-date: 2026-08-10
+date: "2026-08-10"
 collection: 科研工作流与工具链
 tags:
   - Git
