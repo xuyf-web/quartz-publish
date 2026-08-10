@@ -31,6 +31,7 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/linux-research-tools|科研服务器上我常用的 Linux 小工具]]
 - [[../../articles/research-automation|科研自动化流程]]
 - [[../../articles/research-project-folders|科研项目文件夹怎么组织]]
+- [[../../articles/research-documentation-flow|科研项目越做越乱，用好这四类文档]]
 - [[../../articles/traditional-color-palettes|给论文图配一套传统色（附 5 组搭配）]]
 - [[../../articles/ai-git-work-review|让 AI 帮你回顾工作内容]]
 - [[../../articles/server-email-notifications|让服务器学会给你发邮件]]
