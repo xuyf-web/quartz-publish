@@ -23,6 +23,7 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/vscode-extensions|【VS Code】插件推荐-1]]
 - [[../../articles/obsidian-overview|【软件推荐】 Obsidian]]
 - [[../../articles/research-software-tools|【软件推荐】 常用工具]]
+- [[../../articles/book-to-skill|一个“帮你把工具书变成 skill” 的 skill]]
 - [[../../articles/obsidian-to-wechat|从Obsidian直接发布笔记]]
 - [[../../articles/claude-code-server|如何在服务器上使用 Claude Code]]
 - [[../../articles/lsf-gpu-node-tools|把基础命令整理成顺手的资源查看工具]]
