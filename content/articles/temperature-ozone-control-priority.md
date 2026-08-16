@@ -1,7 +1,7 @@
 ---
 title: "Nat. Geosci.｜温度如何改变臭氧减排优先级"
 description: "温度、湿度与光照的季节变化会移动臭氧敏感性分界，冷季因此需要更快削减 VOCs。"
-date: 2026-08-12
+date: 2026-08-09
 collection: "论文与方法解析"
 permalink: /temperature-ozone-control-priority
 tags:
