@@ -36,3 +36,4 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/traditional-color-palettes|给论文图配一套传统色（附 5 组搭配）]]
 - [[../../articles/ai-git-work-review|让 AI 帮你回顾工作内容]]
 - [[../../articles/server-email-notifications|让服务器学会给你发邮件]]
+- [[../../articles/repeated-tasks-as-skills|这个小问题，我还是单独写成了 Skill]]
