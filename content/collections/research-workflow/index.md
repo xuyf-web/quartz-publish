@@ -11,6 +11,7 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/ai-literature-reading|AI如何助力文献阅读]]
 - [[../../articles/git-network|Git网络连接]]
 - [[../../articles/macbook-apps|MacBook 好用软件]]
+- [[../../articles/superpowers-agent-skills|Superpowers：使用 agent 必不可少的 skill]]
 - [[../../articles/vscode-remote-ssh-guide|VS Code 连接服务器及使用注意事项]]
 - [[../../articles/vscode-ssh|VS Code使用SSH]]
 - [[../../articles/ssh-x11-forwarding|Windows 和 macOS SSH X11 图形转发配置教程]]
