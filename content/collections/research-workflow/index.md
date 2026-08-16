@@ -26,6 +26,7 @@ description: 整理科研写作、版本管理、自动化、服务器和效率�
 - [[../../articles/book-to-skill|一个“帮你把工具书变成 skill” 的 skill]]
 - [[../../articles/obsidian-to-wechat|从Obsidian直接发布笔记]]
 - [[../../articles/claude-code-server|如何在服务器上使用 Claude Code]]
+- [[../../articles/subagent-research-workflow|学会主动把任务交给 subagent]]
 - [[../../articles/lsf-gpu-node-tools|把基础命令整理成顺手的资源查看工具]]
 - [[../../articles/literature-automation|文献调研的自动化流程配置]]
 - [[../../articles/bark-job-notifications|用 Bark 发通知：掌控任务进度]]
