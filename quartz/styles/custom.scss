@@ -649,13 +649,16 @@ body[data-slug="index"] {
     border-top: 1px solid color-mix(in srgb, var(--collection-accent) 17%, var(--lightgray));
   }
 
-  a {
+  a.internal {
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
     color: var(--dark);
     font-weight: 650;
     line-height: 1.5;
   }
 
-  a:hover {
+  a.internal:hover {
     color: var(--collection-accent);
   }
 
@@ -664,6 +667,67 @@ body[data-slug="index"] {
     font-family: var(--codeFont);
     font-size: 0.74rem;
     white-space: nowrap;
+  }
+}
+
+// Collection pages are generated from article metadata, not physical folder children.
+body[data-slug^="collections/"][data-slug$="/index"] {
+  article h2#文章 {
+    margin-bottom: 0.45rem;
+  }
+
+  .collection-list-summary {
+    margin: 0 0 1.25rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+  }
+
+  .collection-page-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.25rem;
+      align-items: baseline;
+      padding: 1rem 0;
+      border-top: 1px solid var(--lightgray);
+    }
+
+    a.internal {
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--dark);
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    a.internal:hover {
+      color: var(--secondary);
+    }
+
+    time {
+      color: var(--gray);
+      font-family: var(--codeFont);
+      font-size: 0.78rem;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+  }
+
+  // Folder Page has no meaningful physical children for collection-driven pages.
+  .page-listing {
+    display: none;
+  }
+}
+
+@media all and (max-width: 600px) {
+  body[data-slug^="collections/"][data-slug$="/index"] .collection-page-list li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
   }
 }
 
